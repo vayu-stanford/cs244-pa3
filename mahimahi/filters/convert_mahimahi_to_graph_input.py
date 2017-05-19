@@ -2,7 +2,7 @@
 import sys
 f = open(sys.argv[1])
 
-MIN_DELTA=200
+MIN_DELTA=400
 
 previous_time = 0
 num_bytes = 0

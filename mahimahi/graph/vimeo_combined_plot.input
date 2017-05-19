@@ -1,4 +1,10 @@
 set terminal png
+set output "figures/vimeo_combined.png"
+#set key outside
+set xlabel "seconds"
+set ylabel "\\rotatebox{90}{kbps}" 
+set yrange [0 to 8000]
+set title "Vimeo throughput and video playback rate vs time (6Mbps bottleneck)"
 plot "data/vimeo_client_throughput.data" using 1:2 title 'Client Throughput' with lines,\
       "data/vimeo_dl_throughput.data" using 1:2 title 'Flow Throughput' with lines,\
       "data/vimeo_playback_rate.data" using 1:2 title 'Video Playback Rate' with lines,\
