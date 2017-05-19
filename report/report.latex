@@ -18,7 +18,7 @@
 \section{Introduction}
 We chose to replicate results from
 \href{http://yuba.stanford.edu/~nickm/papers/Confused_Timid_and_Unstable_Picking_a_Video_Streaming_Rate_is_Hard.pdf}{Confused,
-Timid, and Unstable: Picking a video streaming Rate is Hard} This paper
+Timid, and Unstable: Picking a video streaming Rate is Hard} This paper ~\cite{huang2012confused}
 provides insight into picking the video streaming rate for video
 streaming over HTTP.  Generally, commercial video streaming services must
 implement a bit-rate selection algorithm on the client side: clients constantly
@@ -101,6 +101,12 @@ have clients that exhibit a downward spiral.
 Finally, we plan to conduct sensitivity analysis on our results, varying the
 characteristics of the bottleneck link and the competing flows to examine how
 these effect the formation of a downward spiral.
+
+\newpage{}
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
 
 \end{document}
 
