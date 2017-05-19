@@ -13,7 +13,7 @@ for line in f:
         time = int(tokens[0])
         if time - previous_time > MIN_DELTA:
             num_kbits = num_bytes *8 / 1000.0
-            kbps = num_kbits / (delta)
+            kbps = num_kbits / (delta)*1000.0
             print previous_time/1000.0, kbps
             delta = time - previous_time
             num_bytes = float(tokens[2])
@@ -22,5 +22,5 @@ for line in f:
             num_bytes += float(tokens[2])
 
 num_kbits = num_bytes *8 / 1000.0
-kbps = num_kbits / (delta)
+kbps = num_kbits / (delta)*1000.0
 print time/1000.0, kbps
