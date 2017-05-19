@@ -15,5 +15,92 @@
 \author{Pan Hu (SUNET ID: panhu) \& Vayu Kishore (SUNET ID:vayu)}
 \date{2017-04-27}
 \maketitle
+\section{Introduction}
+We chose to replicate results from
+\href{http://yuba.stanford.edu/~nickm/papers/Confused_Timid_and_Unstable_Picking_a_Video_Streaming_Rate_is_Hard.pdf}{Confused,
+Timid, and Unstable: Picking a video streaming Rate is Hard} This paper
+provides insight into picking the video streaming rate for video
+streaming over HTTP.  Generally, commercial video streaming services must
+implement a bit-rate selection algorithm on the client side: clients constantly
+estimate bitrate and use this signal to adapt their rate. However, inaccurate
+bitrate selection, especially in the presence of competing flows, can trigger a
+phenomenon called the ``downward spiral effect'', in which the video player
+gets much less bandwidth than its fair share, leading to low quality of
+experience. The authors analyze the root cause of this effect, and propose and evaluate
+several remedies including average filtering on the estimation as well as less
+conservative bitrate selection algorithm.\\
+
+We have chosen to try to replicate the ``downward spiral'' effect in the
+services tested by the original authors. This is shown in Fig.4 of the original
+paper, shown below. We chose these figures  as they represent the core findings
+of this paper -- that some video streaming clients cut their bit-rates too
+aggressively in the presence of competing flows, leading to playback rates and
+throughputs which are much lower than the fair share.\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/figure_4.png}
+\end{figure}
+
+If time allows, we will also try to replicate the results of streaming using
+modified clients, which use solutions proposed by the authors for the
+``downward spiral'' issue. These are presented in figures 20 and 21 of the
+original paper.
+
+\section{Progress so far}
+So far, we have generated graphs similar to Figure 4 of the original paper for
+YouTube and Vimeo. As shown below, YouTube's player does not exhibit the
+downward spiral effect, while Vimeo's player does. We chose to start with
+examining these services, rather than Netflix or Hulu (which are the services
+examined in the original paper) since they are freely accessible without a
+subscription and there exist third party tools such as \texttt{youtube-dl} for
+manipulating video downloads from these sites.
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/vimeo_combined.png}
+    \caption{Vimeo's player shows a downward spiral effect}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/youtube_combined.png}
+    \caption{YouTube's player does not show a downward spiral effect}
+  \end{subfigure}
+  \caption{Throughput and video playback rate for popular video streaming service clients in the presence of a competing flow}
+\end{figure}
+
+To do this, we set up an environment which uses \texttt{mahimahi} to set up the network
+conditions outlined in the paper (a bottleneck link of ~5Mbps with a 120kb
+buffer). Additionally, we use the metering functionality of \texttt{mahimahi}
+to track throughput of the video stream and the competing flow.\\
+
+We use Firefox's developer tools to track HTTP requests made while the player
+is running. We save these requests and process them to extract the video
+playback rate for the client. Unlike the use of \texttt{mahimahi}, which can be
+easily applied to new streaming services, determining the playback rate of the
+client requires custom parsing and analysis to be performed for each streaming service independently.
+
+To assist with this, we use \texttt{youtube-dl}, which can parse DASH manifests
+of some video streaming websites (though, notably, not Netflix or Hulu), which
+we use to  map the HTTP requests made during the playback to one of the rates
+enumerated in the DASH manifest. We also use \texttt{youtube-dl} to set up a
+competing TCP flow to the video streaming server and directly download the
+video being streamed.
+
+\section{Plan for the next weeks}
+
+We plan to generate graphs shown above for Netflix and Hulu. Most of the
+approach we have used until now will carry over without modification to these
+services. However, we will need to find a replacement for \texttt{youtube-dl},
+and will have to write custom parsing to back out the video streaming rate from
+HTTP requests made by the clients.
+
+If time allows, we will implement the solutions to the downward spiral effect
+discussed in the paper and test them against video streaming services which
+have clients that exhibit a downward spiral.
+
+Finally, we plan to conduct sensitivity analysis on our results, varying the
+characteristics of the bottleneck link and the competing flows to examine how
+these effect the formation of a downward spiral.
+
 \end{document}
 
