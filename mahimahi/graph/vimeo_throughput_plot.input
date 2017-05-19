@@ -1,0 +1,3 @@
+set terminal png
+plot "data/vimeo_client_throughput.data" using 1:2 title 'Client Throughput' with lines,\
+      "data/vimeo_dl_throughput.data" using 1:2 title 'Flow Throughput' with lines
