@@ -1,0 +1,19 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}%
+\usepackage{latexsym}
+\usepackage{amssymb}%
+\usepackage{caption}%
+\usepackage{subcaption}%
+\setlength\parindent{0pt}
+\setlength{\droptitle}{-5em}   % This is your set screw
+\begin{document}
+\title{CS244 PA3 Intermediate Project Report}
+\author{Pan Hu (SUNET ID: panhu) \& Vayu Kishore (SUNET ID:vayu)}
+\date{2017-04-27}
+\maketitle
+\end{document}
+
