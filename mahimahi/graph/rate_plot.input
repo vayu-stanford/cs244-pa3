@@ -1,0 +1,2 @@
+set terminal png
+plot "data/vimeo_playback_rate.data" using 1:2 title 'Playback Rate' with lines
