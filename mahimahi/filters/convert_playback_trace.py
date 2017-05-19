@@ -11,4 +11,4 @@ for j in js:
         dt = dateutil.parser.parse(j["time"])
         if not firstdt:
             firstdt = dt
-        print (dt-firstdt).total_seconds(), j["responseSize"]
+        print (dt-firstdt).total_seconds(), int(j["responseSize"])
