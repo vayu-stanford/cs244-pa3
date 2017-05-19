@@ -17,12 +17,8 @@ for line in r:
     tokens = line.split()
     identifier = tokens[0].split('-')[-1]
     rate = (tokens[5].rstrip('k,'))
-    print tokens
     ratemap[identifier] = rate
 r.close()
-
-print ratemap
-
 
 f = open(sys.argv[1])
 js = json.load(f)

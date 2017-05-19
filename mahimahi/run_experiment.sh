@@ -1,7 +1,8 @@
-URL='https://vimeo.com/217874316'
-SOURCE=vimeo
+#URL='https://vimeo.com/217874316'
+#SOURCE=vimeo
+URL='https://www.youtube.com/watch?v=iNJdPyoqt8U'
+SOURCE=youtube
 WAIT_TIME=40
-#URL='https://www.youtube.com/watch?v=RDfjXj5EGqI'
 ./generate_auxillary_data_${SOURCE}.sh ${URL}
 ./current_time.py > data/${SOURCE}_start_time
 echo Starting browser connection to ${URL}
