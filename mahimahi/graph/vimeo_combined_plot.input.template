@@ -1,10 +1,3 @@
-set terminal pngcairo dashed
-#set key outside
-set xlabel "seconds"
-set ylabel "kbps" 
-set yrange [0 to 8000]
-set arrow from 42.281413, graph(0,0) to 42.281413, graph(1,1) nohead dashtype 2
-set arrow from 102.362986, graph(0,0) to 102.362986, graph(1,1) nohead dashtype 2
 set output "figures/vimeo_combined.png"
 set title "Vimeo throughput and video playback rate vs time (6Mbps bottleneck)"
 plot "data/vimeo_client_throughput.data" using 1:2 title 'Client Throughput' with lines,\

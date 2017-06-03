@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+pkill youtube-dl
+pkill sleep
+pkill mm-link
+pkill firefox
+pkill wget
+pkill python
+rm data/*
+rm logs/*

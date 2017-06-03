@@ -1,0 +1,5 @@
+set terminal pngcairo dashed
+#set key outside
+set xlabel "seconds"
+set ylabel "kbps" 
+set yrange [0 to 8000]
