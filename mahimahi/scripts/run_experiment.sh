@@ -67,7 +67,7 @@ if [ -f control/dl_failure ]; then
 fi
 
 echo 'Checking data files......'
-for file in data/${SOURCE}.har data/${SOURCE}_rates data/${SOURCE}_start_time ${BROWSER_LOG_FILE} ${DL_LOG_FILE} ; do
+for file in data/${SOURCE}.har data/${SOURCE}_start_time ${BROWSER_LOG_FILE} ${DL_LOG_FILE} ; do
 	echo "Checking existence of file ${file}" 
 	if [ ! -f ${file} ]; then
 		echo "Could not find ${file}. Please execute ./scripts/cleanup.sh, then rerun experiment" 
