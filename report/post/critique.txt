@@ -1,0 +1,34 @@
+Critique:
+
+Overall, we found that the critique seems to hold well - we were able to observe
+a downward spiral effect within a web client of a popular video streaming
+service. Notably, we were able to replicate the results even though we are using
+different hardware and software to emulate network links, which indicates that
+the results of the original paper are robust to the network emulation layer.
+
+Additionally, like the original authors of the paper, we observed that in cases
+where we observed a downward spiral effect, manually setting a bit-rate allows
+better link utilization in the presence of a competing flow.
+
+Furthermore, based on our experince with YouTube's client, we observe that some
+web clients do not exhibit this effect, indicating that their clients may be
+more conservative in reducing bit rate in the presence of competing flows.
+Since YouTube's client was not one that was tested in the original paper, we do
+not know if it previously exhibited a downward spiral, or whether it was changed
+since the publication of the original paper.
+
+Extensions:
+
+We experimented with generating graphs using different moving average filters.
+Below are the same graphs as above using a 200 ms moving average filter to
+smooth the throughput, instead of a 4 second moving average.
+
+The original paper used buffers to induce latency in their connection. We
+experimented with varying buffer sizes on the downlink to test the sensitivity
+of the experimental results to this parameter. We found that with a downlink
+buffer size set too low, which causes packet loss in addition to latency, the
+clients cuts the bit rate upon packet loss, preventing the link from being
+saturated. (Figure forthcoming)
+
+We will experiment with the throughput rate set on the downlink to see if the
+downward spiral effect is sensitive to this value.
