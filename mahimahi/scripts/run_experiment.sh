@@ -8,12 +8,15 @@ KILL_TIME=$3
 case $SOURCE in 
 	"vimeo")
 		URL='https://vimeo.com/93003441'
+		DL_URL=$URL
 		SOURCE=vimeo;; 
 	"youtube")
 		URL='https://www.youtube.com/watch?v=iNJdPyoqt8U'
+		DL_URL=$URL
 		SOURCE=youtube;;
 	"local")
-		URL='https://www.youtube.com/watch?v=iNJdPyoqt8U'
+		URL="http://localhost:8000"
+		DL_URL='https://www.youtube.com/watch?v=iNJdPyoqt8U'
 		SOURCE=local;;
 	*) echo "Argument not recognized...exiting"
 		exit -1;;
@@ -43,7 +46,7 @@ BROWSER_PID=$!
 
 sleep 1
 
-mm-link ./traces/unlimited.trace ./traces/unlimited.trace --meter-downlink --downlink-log="${DL_LOG_FILE}" -- ./scripts/direct_dl.sh ${URL} ${WAIT_TIME} ${KILL_TIME} ${SOURCE} &
+mm-link ./traces/unlimited.trace ./traces/unlimited.trace --meter-downlink --downlink-log="${DL_LOG_FILE}" -- ./scripts/direct_dl.sh ${DL_URL} ${WAIT_TIME} ${KILL_TIME} ${SOURCE} &
 DIRECT_DL_PID=$!
 
 wait $BROWSER_PID
@@ -59,6 +62,7 @@ fi
 
 if [ -f control/dl_failure ]; then
 	echo "Download logged failure...please examine output and rerun experiment"
+	echo "Please execute ./scripts/cleanup.sh, then rerun experiment"
 	exit -1
 fi
 
@@ -67,6 +71,7 @@ for file in data/${SOURCE}.har data/${SOURCE}_rates data/${SOURCE}_start_time ${
 	echo "Checking existence of file ${file}" 
 	if [ ! -f ${file} ]; then
 		echo "Could not find ${file}. Please execute ./scripts/cleanup.sh, then rerun experiment" 
+		echo "Please execute ./scripts/cleanup.sh, then rerun experiment"
 		echo "Exiting..."
 		exit -1
 	fi

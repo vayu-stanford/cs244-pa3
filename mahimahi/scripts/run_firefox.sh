@@ -12,9 +12,24 @@ if [ $MM_CONNECT_STATUS -ne 0  ]; then
 	exit -1
 fi
 
+case $SOURCE in 
+	"local")
+		./scripts/run_local_http_server.sh 
+		;;
+	*) 
+	      ;;
+esac
+
 firefox  --devtools --private-window "${URL}"  &> /dev/null 
 FF_PID=$!
 wait $FF_PID
+
+case $SOURCE in 
+	"local")
+		pkill python ;;
+	*) 
+	      ;;
+esac
 
 if [ ! -f data/${SOURCE}.har ]; then
 	echo "ERROR: Could not find HAR file. Please make sure to save HAR file from firefox network tab before exiting the browser"
