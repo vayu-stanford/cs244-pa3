@@ -1,0 +1,22 @@
+Prerequisites:
+
+- Screen resolution within VM should be at least 1280x1024
+- Should be able to support 5Mb/s throughput on network link. A wired link is preferable
+
+
+To replicate:
+run `./run.sh <source>` where source is one of youtube, vimeo, or local
+The following manual steps are required when the browser opens up:
+- make the video fullscreen
+- play the video if it is not auto-playing
+- (optional) use ALT+TAB to confirm that there are three downlink graphs open. These track the throughput of the browser, the direct download, and the combined link
+- wait for 200 seconds
+- pause the video, exit fullscreen
+- right click in the network section of the developer tools and click "Save all as HAR"
+- exit the browser
+
+After you exit the browser, if everything went smoothly, then the graph will be generated in the figures directory. Otherwise, examine the output for errors.
+
+The most common issue we have noted in replication is that there is no internet connectivity in mahimahi shells that are newly spawned through mm-link. To mitigate the effect of this issue, we test network connectivity with ping once mm-link spawns a shell, and if we cannot establish a connection, we fail the experiment with descriptive output. If you see this happening, interrupt the execution of the experiment with CTRL+C, then run './scripts/cleanup.sh', and then rerun the experiment.
+
+Additionally, make sure not to suspend or try to exit the VM while the experiment is in progress as this can affect the timing computations.

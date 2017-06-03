@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-WAIT_TIME=40
-DL_KILL_TIME=60
+WAIT_TIME=60
+DL_KILL_TIME=80
 case $1 in 
 	"vimeo")
 		SOURCE=vimeo;; 
