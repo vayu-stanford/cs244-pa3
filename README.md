@@ -1,6 +1,7 @@
 # cs244-pa3
 
-1) Install prereqs (mahimahi, jq, youtube-dl, gnuplot, python, firefox)
+Install prereqs (mahimahi, jq, youtube-dl, gnuplot, python, firefox) or download VM from https://storage.googleapis.com/cs244vm/cs244_pan_vayu.ova
+
 
 2) `cd mahimahi`
 
