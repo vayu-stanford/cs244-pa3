@@ -11,13 +11,21 @@ firstdt = (dateutil.parser.parse(start_str))
 time_file.close()
 
 
+divisor = 1024.0
 ratemap = {}
-ratemap["1"]=500
-ratemap["2"]=800
-ratemap["3"]=500
-ratemap["4"]=1400
-ratemap["5"]=1700
-ratemap["6"]=2000
+ratemap["960x540p50"]= 2814440/divisor
+ratemap["256x144p25"]= 158128/divisor
+ratemap["704x396p50"]= 1572456/divisor
+ratemap["1920x1080i25"]= 8060152/divisor
+ratemap["512x288p25"]= 440664/divisor
+ratemap["640x360p25"]= 166680/divisor
+ratemap["384x216p25"]= 283320/divisor
+ratemap["896x504p25"]= 1375216/divisor
+ratemap["1280x720p50"]= 5072376/divisor
+ratemap["704x396p25"]= 834352/divisor
+ratemap["192x108p25"]= 88648/divisor
+ratemap["448x252p25"]= 437856/divisor
+ratemap["192x108p6_25"]= 31368/divisor
 
 f = open(sys.argv[1])
 js = json.load(f)
