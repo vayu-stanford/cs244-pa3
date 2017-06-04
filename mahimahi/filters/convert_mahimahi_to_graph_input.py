@@ -3,6 +3,8 @@ import sys
 f = open(sys.argv[1])
 
 MIN_DELTA=4000
+if len(sys.argv) > 2 :
+    MIN_DELTA=int(sys.argv[2])
 
 previous_time = 0
 num_bytes = 0

@@ -1,0 +1,6 @@
+set output "figures/local_200ms_combined.png"
+set title "Local dash.js throughput and video playback rate vs time (6Mbps bottleneck)"
+plot "data/local_200ms_client_throughput.data" using 1:2 title 'Client Throughput' with lines,\
+      "data/local_200ms_dl_throughput.data" using 1:2 title 'Flow Throughput' with lines,\
+      "data/local_playback_rate.data" using 1:2 title 'Video Playback Rate' with lines,\
+

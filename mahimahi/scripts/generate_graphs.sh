@@ -6,7 +6,7 @@ SOURCE=${1}
 ./filters/convert_har_to_json_${SOURCE}.sh "data/${SOURCE}.har" > "data/${SOURCE}.json"
 ./filters/convert_playback_trace_${SOURCE}.py "data/${SOURCE}.json" > "data/${SOURCE}_playback_rate.data"
 
-
+# 4s averaging
 ./filters/convert_mahimahi_to_graph_input.py ./logs/${SOURCE}_client.raw.log > data/${SOURCE}_client_throughput.data
 ./filters/convert_mahimahi_to_graph_input.py ./logs/${SOURCE}_direct_dl.raw.log > data/${SOURCE}_dl_throughput.data
 
@@ -17,3 +17,15 @@ cp ./graph/standard.input.template ./graph/${SOURCE}_combined_plot.input
 cat ./graph/${SOURCE}_combined_plot.input.template >> ./graph/${SOURCE}_combined_plot.input
 
 gnuplot < ./graph/${SOURCE}_combined_plot.input 
+
+# 200ms averaging
+./filters/convert_mahimahi_to_graph_input.py ./logs/${SOURCE}_client.raw.log 200 > data/${SOURCE}_200ms_client_throughput.data
+./filters/convert_mahimahi_to_graph_input.py ./logs/${SOURCE}_direct_dl.raw.log 200 > data/${SOURCE}_200ms_dl_throughput.data
+
+cp ./graph/standard.input.template ./graph/${SOURCE}_200ms_combined_plot.input 
+
+./filters/generate_vertical_line_commands.py ${SOURCE} >>  ./graph/${SOURCE}_200ms_combined_plot.input 
+
+cat ./graph/${SOURCE}_200ms_combined_plot.input.template >> ./graph/${SOURCE}_200ms_combined_plot.input
+
+gnuplot < ./graph/${SOURCE}_200ms_combined_plot.input 
