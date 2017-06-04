@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Auto-player instantiation example, single videoElement, using src attribute</title>
+    <script src="/dist_0.9_10/dash.all.min.js"></script>
+    <!--dash.all.min.js should be used in production over dash.all.debug.js
+        Debug files are not compressed or obfuscated making the file size much larger compared with dash.all.min.js-->
+    <!--<script src="../../dist/dash.all.min.js"></script>-->
+
+    <style>
+        video {
+            width: 1280px;
+            height: 720px;
+        }
+    </style>
+
+    <body>
+        <div>
+            <video data-dashjs-player autoplay src="http://rdmedia.bbc.co.uk/dash/ondemand/testcard/1/client_manifest-events.mpd"controls="true"/>
+        </div>
+    </body>
+</html>
