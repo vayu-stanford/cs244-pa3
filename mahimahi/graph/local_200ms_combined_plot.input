@@ -1,0 +1,13 @@
+set terminal pngcairo dashed
+#set key outside
+set xlabel "seconds"
+set ylabel "kbps" 
+set yrange [0 to 8000]
+set arrow from 62.085509, graph(0,0) to 62.085509, graph(1,1) nohead dashtype 2
+set arrow from 142.100431, graph(0,0) to 142.100431, graph(1,1) nohead dashtype 2
+set output "figures/local_200ms_combined.png"
+set title "Local dash.js throughput and video playback rate vs time (6Mbps bottleneck)"
+plot "data/local_200ms_client_throughput.data" using 1:2 title 'Client Throughput' with lines,\
+      "data/local_200ms_dl_throughput.data" using 1:2 title 'Flow Throughput' with lines,\
+      "data/local_playback_rate.data" using 1:2 title 'Video Playback Rate' with lines,\
+

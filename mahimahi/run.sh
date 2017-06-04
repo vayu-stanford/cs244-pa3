@@ -18,4 +18,5 @@ esac
 sudo sysctl -w net.ipv4.ip_forward=1
 mkdir -p data
 mkdir -p logs
+pkill firefox
 mm-link traces/5mbps_trace  traces/5mbps_trace --meter-downlink -- ./scripts/run_experiment.sh "${SOURCE}" ${WAIT_TIME} ${DL_KILL_TIME}
