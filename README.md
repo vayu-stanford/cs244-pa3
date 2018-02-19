@@ -2,6 +2,9 @@
 
 Install prereqs (mahimahi, jq, youtube-dl, gnuplot, python, firefox) or download VM from https://storage.googleapis.com/cs244vm/cs244_pan_vayu.ova
 
+If the above link has expired, try the following link:
+https://panhu.me/class/CS255/cs244_pan_vayu.ova
+
 ## Prerequisites:
 
 1. Install VirtualBox or another Virtual Machine Manager.
